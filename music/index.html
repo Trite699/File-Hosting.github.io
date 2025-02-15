@@ -30,7 +30,7 @@
         li {
             margin: 15px 0;
         }
-        .button {
+        .button, .copy-button {
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
@@ -39,8 +39,10 @@
             background: #ff6b81;
             border-radius: 8px;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
         }
-        .button:hover {
+        .button:hover, .copy-button:hover {
             background: #ff4757;
         }
         audio {
@@ -55,6 +57,15 @@
             box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
         }
     </style>
+    <script>
+        function copyLink(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -67,6 +78,7 @@
                     <source src="BGM_05_DS_DEMO.mp3" type="audio/mpeg">
                     Your browser does not support the audio tag.
                 </audio>
+                <button class="copy-button" onclick="copyLink(window.location.origin + '/BGM_05_DS_DEMO.mp3')">📋 Copy Link</button>
             </li>
             <li>
                 <span>Test Image</span><br>
@@ -78,6 +90,7 @@
                     <source src="track3.mp3" type="audio/mpeg">
                     Your browser does not support the audio tag.
                 </audio>
+                <button class="copy-button" onclick="copyLink(window.location.origin + '/track3.mp3')">📋 Copy Link</button>
             </li>
             <li><a href="shadow/" class="button">🌑 Shadow</a></li>
         </ul>
