@@ -30,7 +30,7 @@
         li {
             margin: 15px 0;
         }
-        .button {
+        .button, .copy-button {
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
@@ -39,8 +39,10 @@
             background: #ff6b81;
             border-radius: 8px;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
         }
-        .button:hover {
+        .button:hover, .copy-button:hover {
             background: #ff4757;
         }
         audio {
@@ -48,6 +50,15 @@
             margin-top: 5px;
         }
     </style>
+    <script>
+        function copyLink(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -60,6 +71,7 @@
                     <source src="track1.mp3" type="audio/mpeg">
                     Your browser does not support the audio tag.
                 </audio>
+                <button class="copy-button" onclick="copyLink(window.location.origin + '/track1.mp3')">📋 Copy Link</button>
             </li>
             <li>
                 <span>Shadow Track 2</span>
@@ -67,6 +79,7 @@
                     <source src="track2.mp3" type="audio/mpeg">
                     Your browser does not support the audio tag.
                 </audio>
+                <button class="copy-button" onclick="copyLink(window.location.origin + '/track2.mp3')">📋 Copy Link</button>
             </li>
         </ul>
     </div>
