@@ -2,6 +2,42 @@
 <html>
 <head>
     <title>Soundtracks - Ace Attorney Uploads</title>
+    <script>
+        async function uploadFiles() {
+            const folderName = document.getElementById("folderName").value;
+            const files = document.getElementById("fileUpload").files;
+
+            if (!folderName) {
+                alert("Please enter a folder name.");
+                return;
+            }
+
+            if (files.length === 0) {
+                alert("Please select at least one file to upload.");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("folder", folderName);
+            
+            for (let file of files) {
+                formData.append("files", file);
+            }
+
+            try {
+                const response = await fetch("YOUR_BACKEND_URL/upload", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+                alert(result.message || "Upload successful!");
+            } catch (error) {
+                console.error("Upload error:", error);
+                alert("Failed to upload files.");
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Soundtracks</h1>
@@ -11,5 +47,16 @@
         <li><a href="track2.mp3">Track 2</a></li>
         <li><a href="track3.mp3">Track 3</a></li>
     </ul>
+
+    <h2>Upload New Soundtrack</h2>
+    <label for="folderName">Folder Name:</label>
+    <input type="text" id="folderName" placeholder="Enter folder name" required>
+    <br><br>
+    
+    <label for="fileUpload">Select Files:</label>
+    <input type="file" id="fileUpload" multiple required>
+    <br><br>
+
+    <button onclick="uploadFiles()">Upload</button>
 </body>
 </html>
