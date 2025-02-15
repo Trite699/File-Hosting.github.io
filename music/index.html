@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soundtracks - Ace Attorney Uploads</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Soundtracks</h1>
-    <ul>
-        <li><a href="../">Back to Music</a></li>
-        <li><a href="BGM_05_DS_DEMO.mp3">BGM05DS DEMO</a></li>
-        <li><a href="damage.png">Test</a></li>
-        <li><a href="track3.mp3">Track 3</a></li>
-        <li><a href="shadow/">Shadow</a></li>
-    </ul>
+    <div class="container">
+        <h1>🎵 Ace Attorney Soundtracks</h1>
+        <ul>
+            <li><a href="../" class="button">⬅️ Back to Music</a></li>
+            <li>
+                <span>BGM05DS DEMO</span>
+                <audio controls>
+                    <source src="BGM_05_DS_DEMO.mp3" type="audio/mpeg">
+                    Your browser does not support the audio tag.
+                </audio>
+            </li>
+            <li>
+                <span>Test Image</span><br>
+                <img src="damage.png" alt="Test Image" class="preview">
+            </li>
+            <li>
+                <span>Track 3</span>
+                <audio controls>
+                    <source src="track3.mp3" type="audio/mpeg">
+                    Your browser does not support the audio tag.
+                </audio>
+            </li>
+            <li><a href="shadow/" class="button shadow">🌑 Shadow</a></li>
+        </ul>
+    </div>
 </body>
 </html>
