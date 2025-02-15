@@ -1,17 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ace Attorney Uploads</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ace Attorney Uploads - File Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1e1e2e;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .file-explorer {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #282a36;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .folder-list, #file-viewer {
+            list-style: none;
+            padding: 0;
+        }
+        .folder {
+            padding: 10px;
+            background: #3742fa;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .folder:hover {
+            background: #5352ed;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            padding: 10px 15px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff4757;
+        }
+    </style>
 </head>
 <body>
-    <h1>Ace Attorney Uploads</h1>
-    <ul>
-        <li><a href="music/index.html">Music</a>
-            <ul>
-        </li>
-        <li><a href="sound-effects/">Sound Effects</a></li>
-        <li><a href="voice-clips/">Voice Clips</a></li>
-        <li><a href="svgs/">SVGs</a></li>
-    </ul>
+    <div class="file-explorer">
+        <h1>📁 Ace Attorney Uploads</h1>
+        <ul class="folder-list">
+            <li class="folder" onclick="openFolder('music')">🎵 Music</li>
+            <li class="folder" onclick="openFolder('sound-effects')">🔊 Sound Effects</li>
+            <li class="folder" onclick="openFolder('voice-clips')">🎙 Voice Clips</li>
+            <li class="folder" onclick="openFolder('svgs')">🖼 SVGs</li>
+        </ul>
+        <div id="file-viewer" class="hidden">
+            <button onclick="goBack()">⬅️ Back</button>
+            <h2 id="current-folder">Folder</h2>
+            <ul id="file-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        function openFolder(folderName) {
+            document.querySelector('.folder-list').classList.add('hidden');
+            document.getElementById('file-viewer').classList.remove('hidden');
+            document.getElementById('current-folder').innerText = folderName;
+            document.getElementById('file-list').innerHTML = `<li>Loading files...</li>`;
+
+            setTimeout(() => {
+                document.getElementById('file-list').innerHTML = `
+                    <li><a href="${folderName}/file1.mp3">File 1</a></li>
+                    <li><a href="${folderName}/file2.mp3">File 2</a></li>
+                `;
+            }, 1000);
+        }
+
+        function goBack() {
+            document.getElementById('file-viewer').classList.add('hidden');
+            document.querySelector('.folder-list').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
