@@ -1,0 +1,26 @@
+name: Directory Listing
+
+on:
+  push:
+    branches:
+      - main  # or 'master', depending on your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Directory Listings
+        uses: jayanta525/github-pages-directory-listing@v4.0.0
+        with:
+          FOLDER: base  # Change this to your folder name
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Generate directory listings" || echo "No changes to commit"
+          git push
